@@ -1,0 +1,55 @@
+name: Publish to npm on version bump
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    name: Publish if version changed
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: Get current version
+        id: current
+        run: echo "version=$(jq -r .version package.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Get previous version
+        id: previous
+        run: |
+          git fetch origin main --depth=2
+          PREV_VERSION=$(git show HEAD~1:package.json | jq -r .version)
+          echo "version=$PREV_VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Compare versions
+        id: check
+        run: |
+          if [ "${{ steps.current.outputs.version }}" != "${{ steps.previous.outputs.version }}" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install dependencies
+        if: steps.check.outputs.changed == 'true'
+        run: npm ci
+
+      - name: Build package
+        if: steps.check.outputs.changed == 'true'
+        run: npm run build
+
+      - name: Publish to npm
+        if: steps.check.outputs.changed == 'true'
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
