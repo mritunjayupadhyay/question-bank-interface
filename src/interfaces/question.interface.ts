@@ -1,3 +1,14 @@
+export enum DifficultyLevel {
+    LOW = 'low',
+    MEDIUM = 'medium',
+    HARD = 'hard'
+  }
+  
+  export enum QuestionType {
+    MULTIPLE_CHOICE = 'multiple_choice',
+    DESCRIPTIVE = 'descriptive'
+  }
+  
 export interface IQuestionOption {
     id: string;
     optionText: string;
@@ -33,3 +44,13 @@ export interface IQuestionFullDetails extends IQuestion {
     questionOptions: IQuestionOption[];
     questionImages: IQuestionImage[];
 }
+
+export interface QuestionFilter {
+    subjectId?: string;
+    topicIds?: string[];
+    classId?: string;
+    difficultyLevel?: DifficultyLevel;
+    questionType?: QuestionType;
+    minMarks?: number;
+    maxMarks?: number;
+  }
