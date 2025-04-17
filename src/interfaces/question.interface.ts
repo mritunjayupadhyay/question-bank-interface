@@ -8,7 +8,7 @@ export enum DifficultyLevel {
     MULTIPLE_CHOICE = 'multiple_choice',
     DESCRIPTIVE = 'descriptive'
   }
-  
+
 export interface IQuestionOption {
     id: string;
     optionText: string;
@@ -45,7 +45,7 @@ export interface IQuestionFullDetails extends IQuestion {
     questionImages: IQuestionImage[];
 }
 
-export interface QuestionFilter {
+export interface IQuestionFilter {
     subjectId?: string;
     topicIds?: string[];
     classId?: string;
