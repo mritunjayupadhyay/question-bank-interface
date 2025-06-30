@@ -54,3 +54,25 @@ export interface IQuestionFilter {
     minMarks?: number;
     maxMarks?: number;
   }
+
+  export interface ICreateQuestionRequest {
+  questionText: string;
+  marks: number;
+  difficultyLevel: DifficultyLevel;
+  questionType: QuestionType;
+  subjectId: string;
+  topicId: string;
+  classId: string;
+  options?: IQuestionOption[];
+}
+
+export interface IUpdateQuestionRequest {
+  questionText?: string;
+  marks?: number;
+  difficultyLevel?: DifficultyLevel;
+  questionType?: QuestionType;
+  subjectId?: string;
+  topicId?: string;
+  classId?: string;
+  options?: IQuestionOption[];
+}
