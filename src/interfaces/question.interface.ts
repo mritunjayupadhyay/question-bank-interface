@@ -9,10 +9,13 @@ export enum DifficultyLevel {
     DESCRIPTIVE = 'descriptive'
   }
 
-export interface IQuestionOption {
-    id: string;
-    optionText: string;
+export interface IQuestinOptionPayload {
+     optionText: string;
     isCorrect: boolean;
+}
+
+export interface IQuestionOption extends IQuestinOptionPayload {
+    id: string;
 }
 export interface IQuestionImage {
     id: string;
@@ -74,5 +77,7 @@ export interface IUpdateQuestionRequest {
   subjectId?: string;
   topicId?: string;
   classId?: string;
-  options?: IQuestionOption[];
+}
+export interface IUpdateQuestionOptionsRequest {
+  options: IQuestionOption;
 }
