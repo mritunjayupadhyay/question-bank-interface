@@ -66,7 +66,7 @@ export interface IQuestionFilter {
   subjectId: string;
   topicId: string;
   classId: string;
-  options?: IQuestionOption[];
+  options?: IQuestinOptionPayload[];
 }
 
 export interface IUpdateQuestionRequest {
