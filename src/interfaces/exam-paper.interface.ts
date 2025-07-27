@@ -7,7 +7,6 @@ export interface IExamPaper {
     totalMarks: number;
     updatedAt: string; // ISO 8601 date string
 }
-// Maybe we need the following
 export interface IExamPaperWithType extends IExamPaper {
     examTypeName: string;
 }
