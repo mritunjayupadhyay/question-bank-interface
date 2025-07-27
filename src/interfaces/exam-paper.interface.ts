@@ -11,4 +11,6 @@ export interface IExamPaperWithType extends IExamPaper {
     examTypeName: string;
 }
 
+// The IExamPaperSection interface is currently empty.
+
 export interface IExamPaperSection { }
