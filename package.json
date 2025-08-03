@@ -1,6 +1,6 @@
 {
   "name": "question-bank-interface",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "TypeScript interfaces package",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
