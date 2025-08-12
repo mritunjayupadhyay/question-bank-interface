@@ -43,6 +43,9 @@ export interface IQuestion extends IQuestionListItem {
 }
 
 export interface IQuestionFullDetails extends IQuestion {
+    subjectId: string;
+    topicId: string;
+    classId: string;
     questionText: string;
     questionOptions: IQuestionOption[];
     questionImages: IQuestionImage[];
